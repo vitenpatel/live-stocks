@@ -1,7 +1,6 @@
 import streamlit as st
 import requests
 import pandas as pd
-
 # Streamlit UI
 st.title("📊 SPY Stock Dashboard (Alpha Vantage + Streamlit Charts)")
 
