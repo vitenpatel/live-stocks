@@ -1,10 +1,9 @@
 import streamlit as st
 import requests
 import pandas as pd
-import plotly.graph_objects as go
 
 # Streamlit UI
-st.title("📊 SPY Stock Dashboard (Alpha Vantage + Plotly)")
+st.title("📊 SPY Stock Dashboard (Alpha Vantage + Streamlit Charts)")
 
 # User inputs API key
 api_key = st.text_input("Enter your Alpha Vantage API Key:", type="password")
@@ -49,13 +48,7 @@ if api_key:
             df["adjusted_close"] = df["5. adjusted close"].astype(float)
 
             st.markdown("### 📉 SPY Historical Price (Last 30 Days)")
-            fig = go.Figure()
-            fig.add_trace(go.Scatter(x=df.index, y=df["adjusted_close"], mode='lines+markers', name='Adjusted Close'))
-            fig.update_layout(title="SPY Adjusted Close Price - Last 30 Days",
-                              xaxis_title="Date",
-                              yaxis_title="Price ($)",
-                              template="plotly_white")
-            st.plotly_chart(fig)
+            st.line_chart(df["adjusted_close"])
         else:
             st.warning("No historical data found.")
     else:
